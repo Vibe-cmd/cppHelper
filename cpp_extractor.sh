@@ -19,6 +19,7 @@ if [ "$JDoodle" = "true" ]; then
     NC=""
 fi
 
+
 # Array of question descriptions
 declare -a QUESTIONS=(
     "Create a class Car with data members like brand, model, and price. Write member functions to input and display car details. Use public and private access specifiers properly."
@@ -1017,13 +1018,11 @@ get_question_choice() {
         
         # Check if choice is 0 (exit)
         if [ "$choice" -eq 0 ]; then
-            echo "$choice"
             return 0
         fi
         
         # Check if choice is in valid range (1-16)
         if [ "$choice" -ge 1 ] && [ "$choice" -le 16 ]; then
-            echo "$choice"
             return 0
         else
             echo -e "${RED}Invalid question number! Please enter a number between 1 and 16.${NC}"
@@ -1066,16 +1065,34 @@ main() {
         display_header
         display_questions
         
-        # Get user choice
-        choice=$(get_question_choice)
-        
-        # Exit if user chose 0
-        if [ "$choice" -eq 0 ]; then
-            echo ""
-            echo -e "${GREEN}Thank you for using the C++ Code Extractor!${NC}"
-            echo ""
-            exit 0
-        fi
+        # Get user choice directly
+        while true; do
+            printf "${BLUE}Enter question number (0 to exit): ${NC}"
+            read choice
+            
+            # Check if input is a number
+            if ! [[ "$choice" =~ ^[0-9]+$ ]]; then
+                echo -e "${RED}Invalid input! Please enter a number.${NC}"
+                echo ""
+                continue
+            fi
+            
+            # Check if choice is 0 (exit)
+            if [ "$choice" -eq 0 ]; then
+                echo ""
+                echo -e "${GREEN}Thank you for using the C++ Code Extractor!${NC}"
+                echo ""
+                exit 0
+            fi
+            
+            # Check if choice is in valid range (1-16)
+            if [ "$choice" -ge 1 ] && [ "$choice" -le 16 ]; then
+                break
+            else
+                echo -e "${RED}Invalid question number! Please enter a number between 1 and 16.${NC}"
+                echo ""
+            fi
+        done
         
         # Get the filename for this question
         filename="${FILENAMES[$((choice-1))]}"
