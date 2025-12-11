@@ -1051,7 +1051,8 @@ ask_continue() {
 
 # Main program
 main() {
-    while true; do
+    while true
+    do
         # Display header and questions
         display_header
         display_questions
