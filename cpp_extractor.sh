@@ -4,11 +4,20 @@
 # All questions and codes are embedded within this script
 
 # Color codes for better UI
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
-NC='\033[0m' # No Color
+    RED=""
+    GREEN=""
+    YELLOW=""
+    BLUE=""
+    NC="" # No Color
+
+# Disable colors for JDoodle or other non-terminal environments
+if [ "$JDoodle" = "true" ]; then
+    RED=""
+    GREEN=""
+    YELLOW=""
+    BLUE=""
+    NC=""
+fi
 
 # Array of question descriptions
 declare -a QUESTIONS=(
