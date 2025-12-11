@@ -1005,7 +1005,7 @@ display_questions() {
 get_question_choice() {
     local choice
     while true; do
-        echo -e -n "${BLUE}Enter question number (0 to exit): ${NC}"
+        printf "${BLUE}Enter question number (0 to exit): ${NC}"
         read choice
         
         # Check if input is a number
@@ -1048,7 +1048,7 @@ create_code_file() {
 ask_continue() {
     local response
     echo ""
-    echo -e -n "${BLUE}Do you want to extract another question? (y/n): ${NC}"
+    printf "${BLUE}Do you want to extract another question? (y/n): ${NC}"
     read response
     
     if [[ "$response" =~ ^[Yy]$ ]]; then
